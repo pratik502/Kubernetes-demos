@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: gateway-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    #kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /path-provide/*
+        backend:
+          serviceName: path-provide
+          servicePort: 8900          
+      - path: /write-note/*
+        backend:
+          serviceName: write-note
+          servicePort: 8901
